@@ -21,6 +21,8 @@
             <b:WellForm addStyleNames="{style.form}">
                 <b:ControlLabel>Nb of careers</b:ControlLabel>
                 <b:TextBox ui:field="nbCareersBox" placeholder="How many careers do you have?"/>
+                <b:ControlLabel/>
+                <b:Button ui:field="sendBtn" type="PRIMARY">Send to the container</b:Button>
             </b:WellForm>
         </div>
     </g:HTMLPanel>

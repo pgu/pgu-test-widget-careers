@@ -15,6 +15,8 @@ public class Pgu_test_widget_careers implements EntryPoint {
         RootPanel.get().add(welcome);
 
         listenToMessage(functionToApplyOnContainerAction(welcome));
+
+        welcome.setPresenter(this);
     }
 
     private native void listenToMessage(JavaScriptObject fn_to_apply) /*-{
@@ -56,5 +58,24 @@ public class Pgu_test_widget_careers implements EntryPoint {
     }
 
 }-*/;
+
+    public native void sendNotificationToContainer(String nb) /*-{
+        var notification = {};
+        notification.type = 'notif';
+        notification.id = 'careers';
+        notification.count = nb;
+
+        var msg_back = JSON.stringify(notification);
+        $wnd.console.log(msg_back);
+
+        $wnd.console.log($wnd.parent);
+
+        if ($wnd.parent //
+                && $wnd !== $wnd.parent) {
+
+            $wnd.parent.postMessage(msg_back, 'http://localhost:8080');
+        }
+
+    }-*/;
 
 }
