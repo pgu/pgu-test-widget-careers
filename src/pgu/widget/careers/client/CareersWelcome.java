@@ -41,4 +41,8 @@ public class CareersWelcome extends Composite {
         this.pgu_test_widget_careers = pgu_test_widget_careers;
     }
 
+    public void start() {
+        pgu_test_widget_careers.sendNotificationToContainer(getNbCareers());
+    }
+
 }
