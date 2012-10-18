@@ -6,9 +6,19 @@
     <servlet-class>pgu.widget.careers.server.GreetingServiceImpl</servlet-class>
   </servlet>
   
+  <servlet>
+    <servlet-name>menuServlet</servlet-name>
+    <servlet-class>pgu.widget.careers.server.MenuServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/pgu_test_widget_careers/greet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>menuServlet</servlet-name>
+    <url-pattern>/pgu_test_widget_careers/menu</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
