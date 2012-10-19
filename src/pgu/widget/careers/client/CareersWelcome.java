@@ -20,19 +20,19 @@ public class CareersWelcome extends Composite {
     @UiField
     Button sendBtn;
     @UiField
-    TextBox nbCareersBox;
+    TextBox nbProjectsBox;
 
     public CareersWelcome() {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    public String getNbCareers() {
-        return nbCareersBox.getText();
+    public String getNbProjects() {
+        return nbProjectsBox.getText();
     }
 
     @UiHandler("sendBtn")
     public void clickSend(final ClickEvent e) {
-        pgu_test_widget_careers.sendNotificationToContainer(getNbCareers());
+        pgu_test_widget_careers.sendTitleToContainer(getNbProjects());
     }
 
     private Pgu_test_widget_careers pgu_test_widget_careers;
@@ -42,7 +42,7 @@ public class CareersWelcome extends Composite {
     }
 
     public void start() {
-        pgu_test_widget_careers.sendNotificationToContainer(getNbCareers());
+        pgu_test_widget_careers.sendTitleToContainer(getNbProjects());
     }
 
 }

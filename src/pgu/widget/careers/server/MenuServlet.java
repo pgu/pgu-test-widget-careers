@@ -21,7 +21,7 @@ public class MenuServlet extends HttpServlet {
                 "           [                               " + //
                 "            {                              " + //
                 "              'code':'0'                   " + //
-                "             ,'title':'Careers'            " + //
+                "             ,'title':'Projects'           " + //
                 "            }                              " + //
                 "           ]                               " + //
                 "}                                          " + //
@@ -31,12 +31,6 @@ public class MenuServlet extends HttpServlet {
                 .replaceAll("'", "\"") //
                 .replaceAll("\\s", "") //
                 ;
-    }
-    //
-    public static void main(final String[] args) {
-        System.out.println(MenuServlet.getMenu());
-
-        System.out.println("1.to".contains("."));
     }
 
 }

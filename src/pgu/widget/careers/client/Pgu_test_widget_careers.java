@@ -6,6 +6,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
@@ -25,6 +26,8 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
+
+
         welcome = new CareersWelcome();
         welcome.setPresenter(this);
 
@@ -32,15 +35,37 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
         log("has container: " + hasContainer());
 
-        if (hasContainer()) {
-            sendNotificationToContainer("");
-            sendHistoryTokenToContainer(TOKEN_CAREERS);
+        final String href = Window.Location.getHref();
+        if (href.contains("#")) {
 
+            final String[] parts = href.split("#");
+            if (parts.length == 2) {
+
+                final String place = parts[1];
+
+                if (TOKEN_CAREERS.equals(place)) {
+                    showCareersView();
+
+                } else  {
+                    throw new IllegalArgumentException("Unknown token: " + place);
+                }
+
+            } else {
+                showCareersView();
+            }
         } else {
             showCareersView();
         }
 
+        if (hasContainer()) {
+
+            //            sendTitleToContainer("");
+            //            sendHistoryTokenToContainer(TOKEN_CAREERS);
+
+        } else {
+        }
         //        sendHistoryTokenToContainer("careers");
+
 
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
 
@@ -116,50 +141,34 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
               var msg = JSON.parse(e.data);
 
-//              if (msg.action === 'update_menu') {
-
                if (msg.type === 'history') {
 
-                    var token = msg.token;
-                    activity.@pgu.widget.careers.client.Pgu_test_widget_careers::show(Ljava/lang/String;)(token);
-
-
-//                var nb = view.@pgu.widget.careers.client.CareersWelcome::getNbCareers()();
-//
-//                var response = {};
-//                response.id = 'careers';
-//                response.count = nb;
-//
-//                var msg_back = JSON.stringify(response);
-//                $wnd.console.log(msg_back);
-//
-//                e.source.parent.postMessage(msg_back, e.origin);
+                    var place = msg.place;
+                    activity.@pgu.widget.careers.client.Pgu_test_widget_careers::show(Ljava/lang/String;)(place);
 
               } else {
                 $wnd.console.log('Unsupported action ' + msg.action);
-
               }
-
           } else {
                 $wnd.console.log('Unsupported origin');
-
           }
     }
 
 }-*/;
 
-    public native void sendNotificationToContainer(String nb) /*-{
+    public native void sendTitleToContainer(String nb) /*-{
 
         var title = '';
         if (nb === null || nb.trim() === '') {
-            title = 'Careers';
+            title = 'Projects';
         } else {
-            title = 'Careers (' + nb + ')';
+            title = 'Projects (' + nb + ')';
         }
 
         var notification = {};
         notification.type = 'title';
         notification.id = 'careers';
+        notification.code = '0';
         notification.title = title;
 
         var msg_back = JSON.stringify(notification);
@@ -176,16 +185,16 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
     }-*/;
 
-    public void show(final String token) {
-        log("show: " + token);
+    public void show(final String place) {
+        log("show: " + place);
 
-        if (TOKEN_CAREERS.equals(token) //
-                || "".equals(token)) {
+        if (TOKEN_CAREERS.equals(place) //
+                || "".equals(place)) {
 
             showCareersView();
 
         } else {
-            throw new UnsupportedOperationException("Unknown token " + token);
+            throw new UnsupportedOperationException("Unknown token " + place);
         }
 
     }
