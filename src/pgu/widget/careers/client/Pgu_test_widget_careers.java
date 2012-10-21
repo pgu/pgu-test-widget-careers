@@ -33,22 +33,16 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
         RootPanel.get().add(simplePanel);
 
-        log("has container: " + hasContainer());
-
         final String href = Window.Location.getHref();
+        log("href: " + href);
+
         if (href.contains("#")) {
 
             final String[] parts = href.split("#");
             if (parts.length == 2) {
 
                 final String place = parts[1];
-
-                if (TOKEN_CAREERS.equals(place)) {
-                    showCareersView();
-
-                } else  {
-                    throw new IllegalArgumentException("Unknown token: " + place);
-                }
+                show(place);
 
             } else {
                 showCareersView();
@@ -72,7 +66,7 @@ public class Pgu_test_widget_careers implements EntryPoint {
             @Override
             public void onValueChange(final ValueChangeEvent<String> event) {
                 final String token = event.getValue();
-                log("history: " + token);
+                log("history: [" + token + "]");
 
                 if (TOKEN_CAREERS.equals(token) //
                         || "".equals(token)) {
@@ -133,8 +127,7 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
     return function receiver(e) {
 
-        $wnd.console.log('careers');
-        $wnd.console.log(e);
+        $wnd.console.log('receiving: careers: ' + e.data);
 
           if (e.origin === 'http://localhost:8080' //
               || e.origin === 'http://127.0.0.1:8888') {
