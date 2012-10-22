@@ -125,29 +125,45 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
     private native JavaScriptObject functionToApplyOnContainerAction(Pgu_test_widget_careers activity) /*-{
 
-    return function receiver(e) {
+        return function receiver(e) {
 
-        $wnd.console.log('receiving: careers: ' + e.data);
+            $wnd.console.log('receiving: careers: ' + e.data);
 
-          if (e.origin === 'http://localhost:8080' //
-              || e.origin === 'http://127.0.0.1:8888') {
+              if (e.origin === 'http://localhost:8080' //
+                  || e.origin === 'http://127.0.0.1:8888') {
 
-              var msg = JSON.parse(e.data);
+                  var msg = JSON.parse(e.data);
 
-               if (msg.type === 'history') {
+                  if (msg.type === 'history') {
 
-                    var place = msg.place;
-                    activity.@pgu.widget.careers.client.Pgu_test_widget_careers::show(Ljava/lang/String;)(place);
+                      var place = msg.place;
+                      activity.@pgu.widget.careers.client.Pgu_test_widget_careers::show(Ljava/lang/String;)(place);
 
+                  } else if (msg.type === 'chat') {
+
+                      activity.@pgu.widget.careers.client.Pgu_test_widget_careers::showChat(Ljava/lang/String;)(msg.msg);
+
+                  } else {
+                    $wnd.console.log('Unsupported action ' + msg.action);
+                  }
               } else {
-                $wnd.console.log('Unsupported action ' + msg.action);
+                    $wnd.console.log('Unsupported origin');
               }
-          } else {
-                $wnd.console.log('Unsupported origin');
-          }
-    }
+        }
 
-}-*/;
+    }-*/;
+
+    public void showChat(final String text) {
+        if ("Obi-Wan never told you what happened to your father.".equals(text)) {
+            welcome.showChat1Btn();
+
+        } else if ("No. I am your father.".equals(text)) {
+            welcome.showChat2Btn();
+
+        } else if ("reset".equals(text)) {
+            welcome.resetChat();
+        }
+    }
 
     public native void sendTitleToContainer(String nb) /*-{
 
@@ -166,8 +182,6 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
         var msg_back = JSON.stringify(notification);
         $wnd.console.log(msg_back);
-
-        $wnd.console.log($wnd.parent);
 
         if ($wnd.parent //
                 && $wnd !== $wnd.parent) {
@@ -191,5 +205,25 @@ public class Pgu_test_widget_careers implements EntryPoint {
         }
 
     }
+
+    public native void sendChatToContainer(final String text) /*-{
+
+        var notification = {};
+        notification.id = 'careers';
+        notification.type = 'chat';
+        notification.msg = text;
+
+        var msg_back = JSON.stringify(notification);
+        $wnd.console.log(msg_back);
+
+        if ($wnd.parent //
+                && $wnd !== $wnd.parent) {
+
+            $wnd.parent.postMessage(msg_back, 'http://localhost:8080');
+            $wnd.parent.postMessage(msg_back, 'http://127.0.0.1:8888');
+        }
+
+    }-*/;
+
 
 }

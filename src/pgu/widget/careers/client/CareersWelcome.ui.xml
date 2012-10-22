@@ -7,6 +7,9 @@
         .form {
             margin-top: 20px;
         }
+        .disclosure {
+            margin-top: 50px;
+        }
     </ui:style>
     <g:HTMLPanel addStyleNames="container-fluid">
         <div class="row-fluid">
@@ -25,5 +28,15 @@
                 <b:Button ui:field="sendBtn" type="PRIMARY">Send to the container</b:Button>
             </b:WellForm>
         </div>
+        
+        <g:HTMLPanel ui:field="chatRow" addStyleNames="row-fluid {style.disclosure}">
+            <g:DisclosurePanel ui:field="chatDisclosure"  animationEnabled="true">
+                <g:VerticalPanel>
+                    <g:Image url="img/luke.png"></g:Image>
+                    <b:Button ui:field="chat1Btn" text="He told me enough! He told me you killed him!" />
+                    <b:Button ui:field="chat2Btn" text="No... that's not true! That's impossible!" />
+                </g:VerticalPanel>
+            </g:DisclosurePanel>
+        </g:HTMLPanel>
     </g:HTMLPanel>
 </ui:UiBinder> 
