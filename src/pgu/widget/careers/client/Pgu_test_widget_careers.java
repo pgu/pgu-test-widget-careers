@@ -169,9 +169,9 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
         var title = '';
         if (nb === null || nb.trim() === '') {
-            title = 'Projects';
+            title = 'Jobs';
         } else {
-            title = 'Projects (' + nb + ')';
+            title = 'Jobs (' + nb + ')';
         }
 
         var notification = {};

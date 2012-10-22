@@ -21,7 +21,7 @@ public class MenuServlet extends HttpServlet {
                 "           [                               " + //
                 "            {                              " + //
                 "              'code':'0'                   " + //
-                "             ,'title':'Projects'           " + //
+                "             ,'title':'Jobs'               " + //
                 "            }                              " + //
                 "           ]                               " + //
                 "}                                          " + //

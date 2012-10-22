@@ -15,15 +15,15 @@
         <div class="row-fluid">
         
             <b:Hero>
-                <b:Heading size="2">Projects Widget</b:Heading>
-                <b:Paragraph>Manage your projects</b:Paragraph>
+                <b:Heading size="2">Careers Widget</b:Heading>
+                <b:Paragraph>Manage your jobs</b:Paragraph>
             </b:Hero>
         </div>
         
         <div class="row-fluid">
             <b:WellForm addStyleNames="{style.form}">
-                <b:ControlLabel>Nb of projects</b:ControlLabel>
-                <b:TextBox ui:field="nbProjectsBox" placeholder="How many projects do you have?"/>
+                <b:ControlLabel>Nb of jobs</b:ControlLabel>
+                <b:TextBox ui:field="nbProjectsBox" placeholder="How many jobs do you have?"/>
                 <b:ControlLabel/>
                 <b:Button ui:field="sendBtn" type="PRIMARY">Send to the container</b:Button>
             </b:WellForm>
