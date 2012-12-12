@@ -20,13 +20,13 @@ public class Pgu_test_widget_careers implements EntryPoint {
 
     private CareersWelcome welcome ;
 
-    private native void log(String msg) /*-{
+    private native void console(String msg) /*-{
         $wnd.console.log("careers: " + msg);
     }-*/;
 
     @Override
     public void onModuleLoad() {
-
+        console("! CAREERS on module load");
 
         welcome = new CareersWelcome();
         welcome.setPresenter(this);
@@ -34,7 +34,7 @@ public class Pgu_test_widget_careers implements EntryPoint {
         RootPanel.get().add(simplePanel);
 
         final String href = Window.Location.getHref();
-        log("href: " + href);
+        console("href: " + href);
 
         if (href.contains("#")) {
 
@@ -66,7 +66,7 @@ public class Pgu_test_widget_careers implements EntryPoint {
             @Override
             public void onValueChange(final ValueChangeEvent<String> event) {
                 final String token = event.getValue();
-                log("history: [" + token + "]");
+                console("history: [" + token + "]");
 
                 if (TOKEN_CAREERS.equals(token) //
                         || "".equals(token)) {
@@ -193,7 +193,7 @@ public class Pgu_test_widget_careers implements EntryPoint {
     }-*/;
 
     public void show(final String place) {
-        log("show: " + place);
+        console("show: " + place);
 
         if (TOKEN_CAREERS.equals(place) //
                 || "".equals(place)) {
